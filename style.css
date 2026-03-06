@@ -47,6 +47,7 @@ window#waybar {
 #custom-notification,
 #cpu,
 #backlight,
+#battery,
 #tray,
 #memory,
 #window,
@@ -118,7 +119,7 @@ window#waybar.empty #window {
 }
 
 #custom-powerprofile {
-  font-size: 14px;
+  font-size: 17px;
   padding: 0.15rem 0.5rem;
 }
 
