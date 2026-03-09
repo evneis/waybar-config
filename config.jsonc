@@ -23,7 +23,7 @@
     //"custom/power",
   ],
   "custom/spotify": {
-    "format": "  {}",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'></span>  {}",
     "return-type": "json",
     "on-click": "playerctl -p spotify play-pause",
     "on-click-right": "spotifatius toggle-liked",
@@ -33,8 +33,8 @@
   "mpris": {
     "player": "spotify",
     "dynamic-order": ["artist", "title"],
-    "format": "{player_icon} {dynamic}",
-    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'>{player_icon}</span> {dynamic}",
+    "format-paused": "<span font_desc='JetBrainsMono Nerd Font Mono 14'>{status_icon}</span> <i>{dynamic}</i>",
     "status-icons": {
       "paused": "",
     },
@@ -58,10 +58,10 @@
   },
   "clock#simpleclock": {
     "tooltip": false,
-    "format": " {:%I:%M %p}",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'></span> {:%I:%M %p}",
   },
   "clock": {
-    "format": " {:L%a %d %b}",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'></span> {:L%a %d %b}",
     "calendar": {
       "format": {
         "days": "<span weight='normal'>{}</span>",
@@ -77,28 +77,29 @@
     "tooltip-format": "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>",
   },
   "cpu": {
-    "format": " {usage}%",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'></span> {usage}%",
     "tooltip": true,
     "interval": 1,
   },
   "custom/powerprofile": {
     "exec": "~/.config/waybar/scripts/powerprofile",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'>{text}</span>",
     "on-click": "~/.config/waybar/scripts/powerprofile cycle",
     "return-type": "json",
     "interval": 5,
     "tooltip": true,
   },
   "memory": {
-    "format": " {used:0.1f}Gi",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'></span> {used:0.1f}Gi",
   },
   "backlight": {
-    "format": "\uF185 {percent}%",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'>\uF185</span> {percent}%",
     "tooltip": true,
     "on-scroll-up": "brightnessctl set +5%",
     "on-scroll-down": "brightnessctl set 5%-",
   },
   "battery": {
-    "format": "{icon} {capacity}%",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'>{icon}</span> {capacity}%",
     "format-icons": {
       "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
       "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
@@ -106,8 +107,8 @@
     "tooltip": true,
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
-    "format-muted": "  muted",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'>{icon}</span> {volume}%",
+    "format-muted": "<span font_desc='JetBrainsMono Nerd Font Mono 14'></span>  muted",
     "format-icons": {
       "headphone": "",
       "default": [" ", " ", " "],
@@ -121,13 +122,13 @@
   "custom/power": {
     "tooltip": false,
     "on-click": "wlogout -p layer-shell &",
-    "format": "⏻",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'>⏻</span>",
   },
   "custom/notification": {
     "escape": true,
     "exec": "swaync-client -swb",
     "exec-if": "which swaync-client",
-    "format": "{icon}",
+    "format": "<span font_desc='JetBrainsMono Nerd Font Mono 14'>{icon}</span>",
     "format-icons": {
       "none": "󰅺",
       "dnd-none": "󰅺",
