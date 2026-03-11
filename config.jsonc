@@ -32,7 +32,7 @@
     "group/hollow-right-5",
     "group/hollow-right-4",
     "group/hollow-right-1",
-    "group/hollow-right-3"
+    "group/hollow-right-6"
   ],
   "group/hollow-center-1": {
     "orientation": "horizontal",
@@ -62,16 +62,17 @@
       "memory"
     ],
   },
+  "group/hollow-right-6": {
+    "orientation": "horizontal",
+    "modules": [
+      "tray",
+      "custom/notification-center"
+    ],
+  },
   "group/hollow-left-2": {
     "orientation": "horizontal",
     "modules": [
       "hyprland/workspaces",
-    ],
-  },
-  "group/hollow-right-3": {
-    "orientation": "horizontal",
-    "modules": [
-      "custom/user",
     ],
   },
   "group/hollow-left-3": {
@@ -92,7 +93,6 @@
     "modules": [
       "backlight",
       "wireplumber",
-      "network",
       "custom/power",
       "battery",
     ],
@@ -145,11 +145,11 @@
   },
   "custom/target": {
     "format": "󰓾 {}",
-    "exec": "cat ~/.target 2>/dev/null || echo 'No target'",
+    "exec": "fish -c 'cat ~/.target 2>/dev/null; or echo \"No target\"'",
     "interval": 2,
     "tooltip": false,
-    "on-click": "bash -c 'read -p \"Target IP/Host: \" target && echo $target > ~/.target'",
-    "on-click-right": "bash -c '[[ -f ~/.target ]] && rm ~/.target'"
+    "on-click": "fish -c 'read -P \"Target IP/Host: \" target; and echo $target > ~/.target'",
+    "on-click-right": "fish -c 'test -f ~/.target; and rm ~/.target'"
   },
   "temperature": {
     "thermal-zone": 2,
@@ -163,12 +163,12 @@
       "",
       ""
     ],
-    "on-click": "kitty -e zsh -c 'btop; exec zsh'",
+    "on-click": "kitty -e fish -c 'btop; exec fish'",
   },
   "cpu": {
     "interval": 2,
     "format": " {usage:>2}%",
-    "on-click": "kitty -e zsh -c 'btop; exec zsh'",
+    "on-click": "kitty -e fish -c 'btop; exec fish'",
   },
   "memory": {
     "interval": 2,
@@ -218,35 +218,6 @@
     "on-click": "echo '{ip}' | xclip -sel clip",
     "on-click-right": "alacritty -e nmap -sP 192.168.1.0/24",
   },
-  "network": {
-    "interval": 3,
-    "format-wifi": "{icon}",
-    "format-ethernet": "󰌗 {ipaddr}",
-    "format-linked": "󰌙 {ifname} (Sin IP)",
-    "format-disconnected": "󰖪",
-    "format-alt": "󰛳 {ifname}",
-    "tooltip-format-wifi": " {bandwidthDownBytes}  {bandwidthUpBytes}",
-    "tooltip-format-ethernet": "󰌗 {ifname} | IP: {ipaddr}/{cidr} | GW: {gwaddr}",
-    "tooltip-format-disconnected": "󰖪 No internet connection",
-    "tooltip-format-linked": "󰌙 {ifname}: Not ip",
-    "max-length": 30,
-    "on-click": "~/.config/rofi/wifi/script.sh",
-    "format-icons": {
-      "wifi": [
-        "󰤯",
-        "󰤟",
-        "󰤢",
-        "󰤥",
-        "󰤨"
-      ],
-      "ethernet": [
-        "󰌗"
-      ],
-      "disconnected": [
-        "󰖪"
-      ]
-    },
-  },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -267,15 +238,8 @@
     "interval": 3600, // every hour
     "exec": "checkupdates | wc -l", // # of updates
     "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "kitty -e zsh -c 'fastfetch && sleep 0.5 && sudo pacman -Syu; exec zsh'", // update system
+    "on-click": "kitty -e fish -c 'fastfetch; and sleep 0.5; and sudo pacman -Syu; exec fish'", // update system
     "signal": 8,
-  },
-  "custom/user": {
-    "format": " {}",
-    "exec": "whoami",
-    "interval": 30,
-    "tooltip": false,
-    "on-click": "notify-send 'Usuario' '$(whoami)@$(hostname)'"
   },
   "wireplumber": {
     "format": "{icon}",
@@ -296,9 +260,15 @@
     "on-click": "wlogout",
     "tooltip-format": "Power Menu",
   },
+  "custom/notification-center": {
+    "format": "{icon}",
+    "format-icons": "󰂚",
+    "on-click": "swaync-client -t -sw",
+    "tooltip-format": "Notification Center",
+  },
   "custom/htb-vpn": {
     "format": "{}",
-    "exec": "bash -c 'ip=$(ip -4 addr show tun0 2>/dev/null | grep -oP \"inet \\\\K[\\\\d.]+\"); if [ -n \"$ip\" ]; then echo \"$ip\"; else echo \"HTB Disconnected\"; fi'",
+    "exec": "fish -c 'set ip (ip -4 addr show tun0 2>/dev/null | string match -r \"[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+\"); if test -n \"$ip\"; echo $ip; else; echo \"HTB Disconnected\"; end'",
     "interval": 3,
     "tooltip": false
   },
