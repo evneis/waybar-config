@@ -1,5 +1,4 @@
-- Remove power button
-- Battery percentage by default
-- no more military time
+- Calendar popup
+- move notifs to center
 - maybe mess with colors
 - FIX THE STYLES
